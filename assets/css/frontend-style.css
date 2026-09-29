@@ -1,0 +1,648 @@
+/**
+ * SV Bookings - Modern Luxury Client Booking Stylesheet
+ */
+
+:root {
+    --sv-primary: #4f46e5;
+    --sv-primary-hover: #4338ca;
+    --sv-primary-light: #eef2ff;
+    --sv-success: #10b981;
+    --sv-text: #0f172a;
+    --sv-muted: #64748b;
+    --sv-border: #e2e8f0;
+    --sv-card-bg: #ffffff;
+    --sv-radius: 14px;
+    --sv-radius-sm: 8px;
+    --sv-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.08), 0 4px 10px -2px rgba(0, 0, 0, 0.03);
+}
+
+.sv-booking-container,
+.sv-client-builder-wrap,
+.sv-client-lookup-wrap {
+    font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    color: var(--sv-text);
+    background: var(--sv-card-bg);
+    border-radius: var(--sv-radius);
+    padding: 36px 32px;
+    max-width: 780px;
+    margin: 24px auto;
+    border: 1px solid var(--sv-border);
+    box-shadow: var(--sv-shadow);
+    box-sizing: border-box;
+}
+
+.sv-booking-container *,
+.sv-booking-container *::before,
+.sv-booking-container *::after,
+.sv-client-builder-wrap *,
+.sv-client-lookup-wrap * {
+    box-sizing: border-box;
+}
+
+/* Header */
+.sv-form-header {
+    text-align: center;
+    margin-bottom: 32px;
+}
+
+.sv-badge-icon {
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    background: var(--sv-primary-light);
+    color: var(--sv-primary);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 12px;
+}
+
+.sv-form-title {
+    font-size: 26px;
+    font-weight: 800;
+    color: var(--sv-text);
+    margin: 0 0 8px 0;
+    line-height: 1.25;
+}
+
+.sv-form-desc {
+    font-size: 14px;
+    color: var(--sv-muted);
+    margin: 0 auto;
+    max-width: 560px;
+    line-height: 1.5;
+}
+
+/* Form Grid */
+.sv-form-grid {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0 -10px;
+    row-gap: 20px;
+}
+
+.sv-col-12 { width: 100%; padding: 0 10px; }
+.sv-col-8  { width: 66.666%; padding: 0 10px; }
+.sv-col-6  { width: 50%; padding: 0 10px; }
+.sv-col-4  { width: 33.333%; padding: 0 10px; }
+
+@media (max-width: 640px) {
+    .sv-col-6, .sv-col-4, .sv-col-8 {
+        width: 100%;
+    }
+    .sv-booking-container {
+        padding: 24px 18px;
+    }
+}
+
+/* Labels & Inputs */
+.sv-label {
+    display: block;
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--sv-text);
+    margin-bottom: 6px;
+}
+
+.sv-sublabel {
+    display: block;
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--sv-muted);
+    margin-bottom: 8px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.sv-required {
+    color: #ef4444;
+    margin-left: 2px;
+}
+
+.sv-field-help {
+    font-size: 12px;
+    color: var(--sv-muted);
+    margin-top: 4px;
+}
+
+.sv-input-wrap,
+.sv-input-icon-wrap {
+    position: relative;
+    width: 100%;
+}
+
+.sv-input-icon-wrap .sv-icon {
+    position: absolute;
+    left: 14px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--sv-muted);
+    pointer-events: none;
+}
+
+.sv-input-icon-wrap .sv-input {
+    padding-left: 42px !important;
+}
+
+.sv-input,
+.sv-select,
+.sv-textarea {
+    width: 100%;
+    padding: 12px 16px;
+    border-radius: var(--sv-radius-sm);
+    border: 1.5px solid var(--sv-border);
+    font-size: 14px;
+    color: var(--sv-text);
+    background: #ffffff;
+    transition: all 0.2s ease;
+    font-family: inherit;
+}
+
+.sv-input:focus,
+.sv-select:focus,
+.sv-textarea:focus {
+    border-color: var(--sv-primary);
+    box-shadow: 0 0 0 4px rgba(79, 70, 229, 0.12);
+    outline: none;
+}
+
+/* Services Selection Cards */
+.sv-services-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 12px;
+    margin-top: 6px;
+}
+
+.sv-service-card {
+    position: relative;
+    border: 1.5px solid var(--sv-border);
+    border-radius: var(--sv-radius-sm);
+    padding: 14px;
+    cursor: pointer;
+    background: #ffffff;
+    transition: all 0.2s ease;
+    display: flex;
+    flex-direction: column;
+}
+
+.sv-service-card input[type="radio"] {
+    position: absolute;
+    opacity: 0;
+    pointer-events: none;
+}
+
+.sv-service-card:hover {
+    border-color: #cbd5e1;
+    background: #f8fafc;
+}
+
+.sv-service-card.selected {
+    border-color: var(--sv-primary);
+    background: var(--sv-primary-light);
+    box-shadow: 0 0 0 2px var(--sv-primary);
+}
+
+.sv-service-card-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 8px;
+    margin-bottom: 6px;
+}
+
+.sv-service-name {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--sv-text);
+}
+
+.sv-service-price {
+    font-size: 15px;
+    font-weight: 800;
+    color: var(--sv-primary);
+}
+
+.sv-service-meta {
+    font-size: 12px;
+    color: var(--sv-muted);
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+/* Scheduler & Slots Section */
+.sv-scheduler-box {
+    background: #f8fafc;
+    border: 1px solid var(--sv-border);
+    border-radius: var(--sv-radius);
+    padding: 20px;
+    margin-top: 8px;
+}
+
+.sv-scheduler-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+@media (max-width: 600px) {
+    .sv-scheduler-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+.sv-slots-wrapper {
+    min-height: 120px;
+}
+
+.sv-slots-notice {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 16px;
+    background: #ffffff;
+    border: 1px dashed var(--sv-border);
+    border-radius: var(--sv-radius-sm);
+    font-size: 12px;
+    color: var(--sv-muted);
+}
+
+.sv-slots-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
+    gap: 8px;
+    max-height: 220px;
+    overflow-y: auto;
+    padding-right: 4px;
+}
+
+.sv-slot-chip {
+    padding: 8px 10px;
+    border-radius: 6px;
+    border: 1.5px solid var(--sv-border);
+    background: #ffffff;
+    font-size: 12px;
+    font-weight: 600;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.15s ease;
+    color: var(--sv-text);
+}
+
+.sv-slot-chip:hover:not(.disabled) {
+    border-color: var(--sv-primary);
+    background: var(--sv-primary-light);
+    color: var(--sv-primary);
+}
+
+.sv-slot-chip.selected {
+    border-color: var(--sv-primary);
+    background: var(--sv-primary);
+    color: #ffffff;
+}
+
+.sv-slot-chip.disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+    background: #f1f5f9;
+    border-color: #e2e8f0;
+}
+
+/* Choices & Checkboxes */
+.sv-choice-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.sv-radio-option,
+.sv-checkbox-option {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+}
+
+.sv-radio-option input,
+.sv-checkbox-option input {
+    accent-color: var(--sv-primary);
+    width: 16px;
+    height: 16px;
+    cursor: pointer;
+}
+
+/* Section Header Divider */
+.sv-section-header-wrap {
+    border-top: 1px solid var(--sv-border);
+    padding-top: 20px;
+    margin-top: 10px;
+}
+
+.sv-section-title {
+    font-size: 17px;
+    font-weight: 800;
+    color: var(--sv-text);
+    margin: 0 0 4px 0;
+}
+
+.sv-section-desc {
+    font-size: 13px;
+    color: var(--sv-muted);
+    margin: 0;
+}
+
+/* Booking Summary Bar */
+.sv-booking-summary-bar {
+    margin-top: 28px;
+    padding: 18px 24px;
+    background: #f8fafc;
+    border: 1px solid var(--sv-border);
+    border-radius: var(--sv-radius);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 16px;
+}
+
+.sv-summary-price-label {
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--sv-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.sv-summary-price-value {
+    font-size: 24px;
+    font-weight: 800;
+    color: var(--sv-primary);
+}
+
+.sv-submit-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: var(--sv-primary);
+    color: #ffffff;
+    border: none;
+    border-radius: var(--sv-radius-sm);
+    padding: 13px 26px;
+    font-size: 14px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    box-shadow: 0 4px 14px rgba(79, 70, 229, 0.3);
+}
+
+.sv-submit-btn:hover {
+    background: var(--sv-primary-hover);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 18px rgba(79, 70, 229, 0.4);
+}
+
+.sv-submit-btn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none;
+}
+
+/* Success View & Receipt */
+.sv-booking-success-view {
+    text-align: center;
+    padding: 30px 10px;
+    animation: svFadeIn 0.3s ease;
+}
+
+@keyframes svFadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.sv-success-icon-wrap {
+    width: 72px;
+    height: 72px;
+    border-radius: 50%;
+    background: #dcfce7;
+    color: #10b981;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 16px;
+}
+
+.sv-success-title {
+    font-size: 24px;
+    font-weight: 800;
+    margin: 0 0 8px 0;
+    color: var(--sv-text);
+}
+
+.sv-success-msg {
+    font-size: 14px;
+    color: var(--sv-muted);
+    max-width: 480px;
+    margin: 0 auto 24px auto;
+}
+
+.sv-receipt-card {
+    background: #f8fafc;
+    border: 1px solid var(--sv-border);
+    border-radius: var(--sv-radius);
+    padding: 20px;
+    max-width: 440px;
+    margin: 0 auto 24px auto;
+    text-align: left;
+}
+
+.sv-receipt-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid var(--sv-border);
+    padding-bottom: 10px;
+    margin-bottom: 12px;
+}
+
+.sv-receipt-title {
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--sv-muted);
+    text-transform: uppercase;
+}
+
+.sv-receipt-ref {
+    font-family: monospace;
+    font-weight: 700;
+    background: #e2e8f0;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 12px;
+}
+
+.sv-receipt-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 6px 0;
+    font-size: 13px;
+}
+
+.sv-receipt-label {
+    color: var(--sv-muted);
+}
+
+.sv-receipt-val {
+    font-weight: 600;
+    color: var(--sv-text);
+}
+
+.sv-receipt-total {
+    border-top: 1.5px dashed var(--sv-border);
+    padding-top: 10px;
+    margin-top: 8px;
+    font-size: 15px;
+    font-weight: 800;
+    color: var(--sv-primary);
+}
+
+.sv-btn-outline {
+    background: transparent;
+    border: 1.5px solid var(--sv-border);
+    color: var(--sv-text);
+    padding: 10px 20px;
+    border-radius: var(--sv-radius-sm);
+    font-weight: 600;
+    font-size: 13px;
+    cursor: pointer;
+}
+
+.sv-btn-outline:hover {
+    background: #f1f5f9;
+}
+
+/* ======================================================
+   CLIENT FORM BUILDER STYLING
+   ====================================================== */
+.sv-client-builder-wrap {
+    max-width: 860px;
+}
+
+.sv-client-builder-header {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 28px;
+}
+
+.sv-cb-badge {
+    width: 44px;
+    height: 44px;
+    border-radius: 10px;
+    background: var(--sv-primary);
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.sv-cb-title {
+    font-size: 22px;
+    font-weight: 800;
+    margin: 0 0 4px 0;
+}
+
+.sv-cb-subtitle {
+    font-size: 13px;
+    color: var(--sv-muted);
+    margin: 0;
+}
+
+.sv-cb-card {
+    background: #f8fafc;
+    border: 1px solid var(--sv-border);
+    border-radius: var(--sv-radius);
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+.sv-cb-card-title {
+    font-size: 15px;
+    font-weight: 700;
+    margin: 0 0 16px 0;
+    color: var(--sv-text);
+}
+
+.sv-cb-card-header-flex {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 16px;
+}
+
+.sv-cb-add-menu {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+}
+
+.sv-cf-fields-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.sv-cf-field-item {
+    background: #ffffff;
+    border: 1px solid var(--sv-border);
+    border-radius: var(--sv-radius-sm);
+    padding: 12px 14px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+.sv-cf-field-label-input {
+    font-size: 13px;
+    font-weight: 600;
+    border: 1px solid var(--sv-border);
+    border-radius: 4px;
+    padding: 4px 8px;
+    flex: 1;
+}
+
+.sv-cb-submit-wrap {
+    text-align: center;
+    margin-top: 24px;
+}
+
+.sv-cf-result-card {
+    background: #f0fdf4;
+    border: 1.5px solid #86efac;
+    border-radius: var(--sv-radius);
+    padding: 24px;
+    margin-top: 24px;
+    text-align: center;
+}
+
+.sv-code-box {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    margin-top: 12px;
+}
+
+.sv-code-box code {
+    background: #ffffff;
+    border: 1px solid #bbf7d0;
+    padding: 8px 16px;
+    border-radius: 6px;
+    font-size: 14px;
+    color: #166534;
+}
